@@ -33,7 +33,7 @@ def create_app():
             return render_template('home.html')
         return render_template('home.html')
 
-    @app.route('/stop-scheduler', methods=['POST'])
+    @app.route('/stop-scheduler', methods=['POST']) 
     def stop_scheduler():
         global scheduler_running
         if scheduler_running:

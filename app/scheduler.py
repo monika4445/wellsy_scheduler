@@ -14,7 +14,7 @@ def schedule_workout_and_hydration_reminders():
         "Time to get moving! Remember, every workout is a step toward your best self. Enjoy the process, and let’s achieve those fitness goals together!",
         "Workout time! Every moment you dedicate to your fitness is an investment in your well-being. Stay committed. You’re amazing!"
     ]
-    
+
     hydration_messages = [
         "Don’t forget to hydrate! Your body will thank you later.",
         "Water time! Keep that brain and body fueled.",
@@ -29,7 +29,7 @@ def schedule_workout_and_hydration_reminders():
     scheduler = BackgroundScheduler()
 
     # Schedule workout reminders (e.g., once a day)
-    scheduler.add_job(func=lambda: send_message(random.choice(workout_messages)), trigger=CronTrigger(hour=15, minute=0))
+    scheduler.add_job(func=lambda: send_message(random.choice(workout_messages)), trigger=CronTrigger(hour=13, minute=27))
 
     # Schedule hydration reminders (e.g., 8 times a day)
     hydration_times = 8  # Number of times to remind to drink water
