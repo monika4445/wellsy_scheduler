@@ -1,0 +1,75 @@
+/* Reset some basic elements */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f4f8; /* Light background for a fresh look */
+    color: #333; /* Dark text for contrast */
+    line-height: 1.6;
+}
+
+/* Container for main content */
+.container {
+    max-width: 800px;
+    margin: 50px auto; /* Centering the container */
+    padding: 30px; /* Increased padding for better spacing */
+    background: linear-gradient(to bottom right, #ffffff, #e0f7fa); /* Gradient background for the main content */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+    text-align: center; /* Centering all text within the container */
+}
+
+/* Header styles */
+h1 {
+    font-size: 3em; /* Larger header */
+    color: #00796b; /* Teal color for health theme */
+    margin-bottom: 20px; /* Space below the header */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+/* Paragraph styles */
+p {
+    font-size: 1.2em; /* Slightly larger font size */
+    margin-bottom: 30px; /* More space below paragraphs */
+    color: #555; /* Softer text color */
+}
+
+/* Button styles */
+button {
+    display: inline-block;
+    padding: 12px 25px; /* Increased padding for buttons */
+    font-size: 1.2em;
+    color: #ffffff; /* White text for button */
+    background-color: #2196F3; /* Bright blue background */
+    border: none; /* No border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle shadow for buttons */
+}
+
+/* Button hover effect */
+button:hover {
+    background-color: #1976D2; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2.5em; /* Smaller header on small screens */
+    }
+
+    p {
+        font-size: 1.1em; /* Smaller text on small screens */
+    }
+
+    button {
+        width: 100%; /* Full width buttons on small screens */
+        font-size: 1.1em; /* Slightly smaller text on buttons */
+    }
+}

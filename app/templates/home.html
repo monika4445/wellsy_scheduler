@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Updates Scheduler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Life Updates Scheduler</h1>
+        <p>Your scheduler is running and reminding you to work out!</p>
+
+        <form action="/stop-scheduler" method="POST">
+            <button type="submit">Stop Scheduler</button>
+        </form>
+    </div>
+</body>
+</html>
