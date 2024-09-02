@@ -17,3 +17,19 @@ hydration_messages = [
     "Pause and refresh! A quick water break keeps you at your best.",
     "You’ve got this! But first, a sip of water to keep you going."
 ]
+
+break_messages = [
+    "Time to take a break and stretch!",
+    "Get up, move around, and refresh yourself!",
+    "Don't forget to take a short break!",
+    "Hey Monika! It’s break time. Stretch, walk around, and recharge!",
+    "Don't forget to take a break. A short walk or stretch can boost your energy!",
+    "Break time, Monika! Grab a snack, do a little dance, and get back to it!",
+    "Reminder: It's time to stand up, stretch, and give your eyes a rest. Your body will thank you!",
+    "You’re doing great, Monika! A short break now will help keep you sharp for the rest of the day.",
+    "Pause for a moment! Take a break, breathe deeply, and let those creative ideas flow.",
+    "A little reminder to take a breather, Monika. Move around, get some fresh air!",
+    "Time for a break! How about a quick stretch or a dance-off? Let’s get those muscles moving!",
+    "Step away from the screen, Monika. Enjoy a few moments of mindfulness and relaxation. You deserve it!"
+]
+

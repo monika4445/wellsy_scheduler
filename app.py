@@ -5,7 +5,7 @@ from apscheduler.triggers.interval import IntervalTrigger
 from datetime import datetime, timedelta
 import random
 from app.telegram_bot import send_message
-from app.scheduler import workout_messages, hydration_messages
+from app.scheduler import workout_messages, hydration_messages, break_messages
 
 app = Flask(__name__)
 
@@ -50,6 +50,16 @@ def home():
             )
             print(f"Hydration reminder {i} scheduled.")
 
+        if not scheduler.get_job('break_reminder'):
+            scheduler.add_job(
+                func=lambda: send_message(random.choice(break_messages)),
+                trigger=IntervalTrigger(minutes=30),  # Set to remind every 30 minutes
+                id='break_reminder',
+                name='Remind to take a break every 30 minutes',
+                replace_existing=True
+            )
+            print("Break reminder scheduled.")
+            
         # Start the scheduler if it hasn't been started already
         if not scheduler.running:
             scheduler.start()
