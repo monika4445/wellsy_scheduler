@@ -4,12 +4,12 @@ from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
 from datetime import datetime, timedelta
 import random
-from app.telegram_bot import send_message
-from app.scheduler import workout_messages, hydration_messages, break_messages
+from telegram_bot import send_message
+from scheduler import workout_messages, hydration_messages, break_messages
 
 app = Flask(__name__)
 
-# Define the trigger for daily execution at 20:56
+# Define the trigger for daily execution at 15:00
 daily_trigger = CronTrigger(hour=15, minute=0)
 
 # Initialize the scheduler
@@ -24,7 +24,7 @@ def home():
                 func=lambda: send_message(random.choice(workout_messages)),
                 trigger=daily_trigger,
                 id='daily_task',
-                name='Run daily task at 20:56 every day',
+                name='Run daily task at 15:00 every day',
                 replace_existing=True
             )
             print("Daily task scheduled.")
