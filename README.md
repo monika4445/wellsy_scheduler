@@ -13,8 +13,8 @@ This project is a Flask application that uses a scheduler to send hydration remi
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/wellsyscheduler.git
-    cd wellsyscheduler
+    git clone https://github.com/monika4445/wellsy_scheduler.git
+    cd wellsy_scheduler
     ```
 
 2. Install dependencies:
@@ -37,10 +37,10 @@ This project is a Flask application that uses a scheduler to send hydration remi
     python app.py
     ```
 
-5. Start the scheduler by making a POST request to the `/start-scheduler` endpoint to begin receiving updates:
+5. Start the scheduler by making a POST request to the `/` endpoint to begin receiving updates:
 
     ```bash
-    curl -X POST http://localhost:5000/start-scheduler
+    curl -X POST http://localhost:5000/
     ```
 
 6. Your scheduler will now be running, sending hydration and workout reminders to you via Telegram!
