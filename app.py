@@ -9,6 +9,9 @@ from scheduler import workout_messages, hydration_messages, break_messages
 
 app = Flask(__name__)
 
+# Specify the template folder location
+app = Flask(__name__, template_folder='templates')
+
 # Define the trigger for daily execution at 15:00
 daily_trigger = CronTrigger(hour=15, minute=0)
 
