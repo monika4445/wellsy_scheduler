@@ -13,7 +13,7 @@ app = Flask(__name__)
 app = Flask(__name__, template_folder='templates')
 
 # Define the trigger for daily execution at 15:00
-daily_trigger = CronTrigger(hour=15, minute=0)
+daily_trigger = CronTrigger(hour=00, minute=30)
 
 # Initialize the scheduler
 scheduler = BackgroundScheduler()
@@ -24,34 +24,32 @@ def home():
         # Avoid adding the job multiple times by checking if it already exists
         if not scheduler.get_job('daily_task'):
             scheduler.add_job(
-                func=lambda: send_message(random.choice(workout_messages)),
+                func=send_message,
                 trigger=daily_trigger,
                 id='daily_task',
                 name='Run daily task at 15:00 every day',
+                args=[random.choice(workout_messages)],
                 replace_existing=True
             )
             print("Daily task scheduled.")
 
         # Schedule hydration reminders
-        start_time = datetime.now().replace(hour=8, minute=0, second=0, microsecond=0)
         total_cups = 11.5
         total_minutes = 11 * 60
         interval_minutes = total_minutes / total_cups
 
-        # Remove existing hydration reminder jobs
-        for job in scheduler.get_jobs():
-            if job.id.startswith('hydration_'):
-                scheduler.remove_job(job.id)
-
-        for i in range(int(total_cups)):
-            reminder_time = start_time + timedelta(minutes=i * interval_minutes)
+        try:
             scheduler.add_job(
-                func=lambda: send_message(random.choice(hydration_messages)),
-                trigger=IntervalTrigger(minutes=interval_minutes, start_date=reminder_time),
-                id=f'hydration_{i}',
-                name=f'Hydration reminder {i}'
-            )
-            print(f"Hydration reminder {i} scheduled.")
+            func=lambda: send_message(random.choice(hydration_messages)),
+            trigger=IntervalTrigger(minutes=interval_minutes),
+            id='hydration_reminder',
+            name='Hydration message',
+            replace_existing=True
+)       
+        except Exception as e:
+            print(f"Failed to add job: {e}")
+            
+        print(f"Hydration reminder scheduled.")
 
         if not scheduler.get_job('break_reminder'):
             scheduler.add_job(
