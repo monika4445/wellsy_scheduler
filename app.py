@@ -13,7 +13,7 @@ app = Flask(__name__)
 app = Flask(__name__, template_folder='templates')
 
 # Define the trigger for daily execution at 15:00
-daily_trigger = CronTrigger(hour=00, minute=30)
+daily_trigger = CronTrigger(hour=15, minute=0)
 
 # Initialize the scheduler
 scheduler = BackgroundScheduler()
