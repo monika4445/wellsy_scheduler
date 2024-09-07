@@ -16,7 +16,7 @@ def send_message(message):
 def hydration_job():
     armenian_tz = pytz.timezone('Asia/Yerevan')
     current_time = datetime.now(armenian_tz).time()
-    cutoff_time = datetime.strptime('18:00:00', '%H:%M:%S').time()
+    cutoff_time = datetime.strptime('21:00:00', '%H:%M:%S').time()
     
     if current_time < cutoff_time:
         # Call the universal send_message function
