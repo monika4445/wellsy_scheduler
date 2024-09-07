@@ -7,8 +7,31 @@ import logging
 from telegram_bot import send_message
 from scheduler import workout_messages, hydration_messages, break_messages
 import pytz
+from logging import Formatter
+from datetime import datetime
 
-app = Flask(__name__)
+# Define a custom formatter to use Armenian time
+class ArmenianTimeFormatter(Formatter):
+    def __init__(self, fmt=None, datefmt=None):
+        super().__init__(fmt, datefmt)
+        self.timezone = pytz.timezone('Asia/Yerevan')
+
+    def formatTime(self, record, datefmt=None):
+        dt = datetime.fromtimestamp(record.created, self.timezone)
+        if datefmt:
+            return dt.strftime(datefmt)
+        else:
+            return dt.isoformat()
+
+# Set up logging configuration
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
+# Create and set a custom formatter for the root logger
+formatter = ArmenianTimeFormatter(fmt='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(formatter)
+logger.addHandler(console_handler)
 
 # Specify the template folder location
 app = Flask(__name__, template_folder='templates')
@@ -20,7 +43,7 @@ logger = logging.getLogger(__name__)
 
 # Define the trigger for daily execution at 15:00 in Armenian time
 armenian_tz = pytz.timezone('Asia/Yerevan')
-daily_trigger = CronTrigger(hour=15, minute=27, timezone=armenian_tz)
+daily_trigger = CronTrigger(hour=15, minute=0, timezone=armenian_tz)
 
 # Initialize the scheduler
 scheduler = BackgroundScheduler()
