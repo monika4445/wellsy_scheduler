@@ -67,7 +67,7 @@ def home():
                 name='Hydration message',
                 replace_existing=True
             )       
-            logger.info("Hydration reminder scheduled with an interval of %.2f minutes.", hydration_interval)
+            logger.info("Hydration reminder scheduled with an interval of 57 minutes.")
         except Exception as e:
                 logger.error("Failed to add hydration reminder job: %s", e)
 
