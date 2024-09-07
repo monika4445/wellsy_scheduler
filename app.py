@@ -24,14 +24,13 @@ class ArmenianTimeFormatter(Formatter):
             return dt.isoformat()
 
 # Set up logging configuration
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
-
-# Create and set a custom formatter for the root logger
 formatter = ArmenianTimeFormatter(fmt='%(asctime)s - %(name)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(formatter)
-logger.addHandler(console_handler)
+
+# Apply custom formatter to Flask and Werkzeug loggers
+logging.basicConfig(level=logging.DEBUG, handlers=[console_handler])
+logger = logging.getLogger(__name__)
 
 # Specify the template folder location
 app = Flask(__name__, template_folder='templates')
