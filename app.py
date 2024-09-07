@@ -6,6 +6,7 @@ import random
 import logging
 from telegram_bot import send_message
 from scheduler import workout_messages, hydration_messages, break_messages
+import pytz
 
 app = Flask(__name__)
 
@@ -17,8 +18,9 @@ logging.basicConfig(level=logging.DEBUG,  # Set to DEBUG to capture all levels o
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-# Define the trigger for daily execution at 15:00
-daily_trigger = CronTrigger(hour=15, minute=0)
+# Define the trigger for daily execution at 15:00 in Armenian time
+armenian_tz = pytz.timezone('Asia/Yerevan')
+daily_trigger = CronTrigger(hour=15, minute=27, timezone=armenian_tz)
 
 # Initialize the scheduler
 scheduler = BackgroundScheduler()
