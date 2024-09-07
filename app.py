@@ -38,7 +38,7 @@ app = Flask(__name__, template_folder='templates')
 
 # Define the trigger for daily execution at 15:00 in Armenian time
 armenian_tz = pytz.timezone('Asia/Yerevan')
-daily_trigger = CronTrigger(hour=20, minute=7, timezone=armenian_tz)
+daily_trigger = CronTrigger(hour=15, minute=0, timezone=armenian_tz)
 
 # Initialize the scheduler
 scheduler = BackgroundScheduler()
@@ -59,7 +59,7 @@ def home():
         logger.info("Daily task scheduled.")
 
         try:
-            hydration_interval = IntervalTrigger(minutes=3) 
+            hydration_interval = IntervalTrigger(minutes=57) 
             scheduler.add_job(
                 func=hydration_job,
                 trigger=hydration_interval,
@@ -73,7 +73,7 @@ def home():
 
         scheduler.add_job(
             func=send_message,
-            trigger=IntervalTrigger(minutes=3),
+            trigger=IntervalTrigger(minutes=30),
             id='break_reminder',
             name='Remind to take a break every 30 minutes',
             args=[random.choice(break_messages)],
