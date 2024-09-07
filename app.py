@@ -2,11 +2,12 @@ from flask import Flask, render_template
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
-import random
 import logging
 from telegram_bot import send_message
-from scheduler import workout_messages, hydration_messages, break_messages
+from scheduler import workout_messages, break_messages
 import pytz
+import random
+from telegram_bot import hydration_job
 from logging import Formatter
 from datetime import datetime
 
@@ -46,13 +47,6 @@ scheduler.start()
 @app.route('/')
 def home():
     try:
-        # Start the scheduler if it hasn't been started already
-        if not scheduler.running:
-            scheduler.start()
-            logger.info("Scheduler started.")
-        else:
-            logger.info("Scheduler is already running.")
-
         # Avoid adding the job multiple times by checking if it already exists
         scheduler.add_job(
             func=send_message,
@@ -67,7 +61,7 @@ def home():
         try:
             hydration_interval = IntervalTrigger(minutes=57) 
             scheduler.add_job(
-                func=lambda: send_message(random.choice(hydration_messages)),
+                func=hydration_job,
                 trigger=hydration_interval,
                 id='hydration_reminder',
                 name='Hydration message',
