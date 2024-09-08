@@ -4,10 +4,9 @@ from apscheduler.triggers.cron import CronTrigger
 from apscheduler.triggers.interval import IntervalTrigger
 import logging
 from telegram_bot import send_message
-from scheduler import workout_messages, break_messages
+from scheduler import workout_messages, break_messages, hydration_messages
 import pytz
 import random
-from telegram_bot import hydration_job
 from logging import Formatter
 from datetime import datetime
 
@@ -61,10 +60,11 @@ def home():
         try:
             hydration_interval = IntervalTrigger(minutes=57) 
             scheduler.add_job(
-                func=hydration_job,
+                func=send_message,
                 trigger=hydration_interval,
                 id='hydration_reminder',
                 name='Hydration message',
+                args=[random.choice(hydration_messages)],
                 replace_existing=True
             )       
             logger.info("Hydration reminder scheduled with an interval of 57 minutes.")
