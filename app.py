@@ -37,7 +37,7 @@ app = Flask(__name__, template_folder='templates')
 
 # Define the trigger for daily execution at 15:00 in Armenian time
 armenian_tz = pytz.timezone('Asia/Yerevan')
-daily_trigger = CronTrigger(hour=00, minute=27, timezone=armenian_tz)
+daily_trigger = CronTrigger(hour=15, minute=0, timezone=armenian_tz)
 
 # Initialize the scheduler
 scheduler = BackgroundScheduler()
